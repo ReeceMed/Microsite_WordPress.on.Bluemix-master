@@ -39,6 +39,7 @@
         "ibmjstart/wp-bluemix-config"                 : "dev-master",
         "wpackagist-plugin/stops-core-theme-and-plugin-updates": "*",
         "wpackagist-plugin/postman-smtp": "*",
+        "wpackagist-plugin/idea-factory": "*",
         "wpackagist-plugin/wp-optimizer"            : "*",
         "wpackagist-plugin/contact-form-7"            : "*",
         "wpackagist-theme/twentyfourteen"             : "*",
