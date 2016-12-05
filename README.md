@@ -1,17 +1,17 @@
 WordPress on Bluemix
 ================================================================================
 
-WordPress is an open source content management system (CMS) that is popular with 
-both businesses and bloggers. WordPress is extendable and customizable through 
-themes, plugins, and templates that make it easy to transform the site to meet 
+WordPress is an open source content management system (CMS) that is popular with
+both businesses and bloggers. WordPress is extendable and customizable through
+themes, plugins, and templates that make it easy to transform the site to meet
 your exact needs.
 
-WordPress on Bluemix uses the [Composer package manager](https://getcomposer.org) to install the 
-[wordpress package from johnpbloch](https://packagist.org/packages/johnpbloch/wordpress) 
-and configures the installation to use ClearDB (MySQL) for data and IBM Object Storage 
+WordPress on Bluemix uses the [Composer package manager](https://getcomposer.org) to install the
+[wordpress package from johnpbloch](https://packagist.org/packages/johnpbloch/wordpress)
+and configures the installation to use ClearDB (MySQL) for data and IBM Object Storage
 for media.
 
-[![Deploy to Bluemix](https://hub.jazz.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://hub.jazz.net/git/jstart/WordPress.on.Bluemix)
+[![Deploy to Bluemix](https://hub.jazz.net/deploy/button.png)](https://github.com/ReeceMed/Microsite_WordPress.on.Bluemix-master)
 
 Note: Only one instance of the Object Storage Free plan is allowed per organization. If your target org already has one, please either
   * Rename your Object Storage instance to "myObjectStorage" and deploy your application to the same space as this service instance; or
@@ -23,55 +23,36 @@ Note: Only one instance of the Object Storage Free plan is allowed per organizat
 1.  After your application starts, open it in a web browser (typically at a URL like http://&lt;your-hostname&gt;[.your-region].mybluemix.net.
 2.  Follow the steps to configure your WordPress website for the first time.
 
-## Configure SendGrid
-The SendGrid plugin is included by default, but must be activated.
-To add email support to your WordPress site:
-1. Create a SendGrid instance from the Bluemix catalog and bind it to your WordPress app
-2. Log in to your WordPress dashboard and enable the SendGrid plugin
-3. Select `Settings > SendGrid` and enter your SendGrid credentials (available via "Show Credentials" in the web UI or `cf env` from the [cf cli](https://github.com/cloudfoundry/cli))
-4. Configure the other email settings:
-  * Name: The name that you want the email to be from.
-  * Sending Address: The address that the email appears to originate from.
-  * Reply Address: The email that replies are sent to. Choose a working, existing email that you use.
-  * Categories: Any categories that you want to attach to your messages.
-
-## Activate the WP Super Cache Plugin
-1.  Navigate to the plugins page in the admin dashboard.
-2.  Find the WP Super Cache plugin in the list and click Activate
-3.  A message at the top of the page says, "WP Super Cache is disabled. Please go to the plugin admin page to enable caching." Click on the plugin admin page.
-  * If you are directed to a page that says, "Permalink Structure Error", a custom URL or permalink structure is required for the plugin to work correctly. Go to the Permalinks Options Page to configure the permalinks. Click the Permalinks Options Page link and choose a new permalink structure. Hit Save Changes. A common choice here is month and name.
-4.  Navigate to the WP Super Cache settings under the Settings Tab. Turn caching on. Hit Update Status.
-You are now using caching.
 
 ## Customize Your WordPress
-WordPress on Bluemix uses the [Composer package manager](https://getcomposer.org) 
-for both the installation of the WordPress core and also for the installation of all 
+WordPress on Bluemix uses the [Composer package manager](https://getcomposer.org)
+for both the installation of the WordPress core and also for the installation of all
 plugins and themes.
 
-Applications on Bluemix have an ephemeral filesystem, meaning that each time your 
-application is restaged, the container that stores the files is destroyed and 
-recreated from the application package. Therefore, WordPress on Bluemix disables 
+Applications on Bluemix have an ephemeral filesystem, meaning that each time your
+application is restaged, the container that stores the files is destroyed and
+recreated from the application package. Therefore, WordPress on Bluemix disables
 in-place upgrades and warns against the web-based installation of plugins and themes.
 
-Instead, to edit your installation, you must modify the composer.json file and re-push 
+Instead, to edit your installation, you must modify the composer.json file and re-push
 the application to Bluemix.
 1.  Git clone your project repo or edit your application using Bluemix DevOps Services
 2.  Modify composer.json with the set of plugins and themese you wish to install
 3.  Push your changes to Bluemix using Bluemix DevOps Services or the cf cli
-  * For more info on the Cloud Foundry command-line interface, see 
+  * For more info on the Cloud Foundry command-line interface, see
 [Deploying your app with the command line interface](https://www.ng.bluemix.net/docs/starters/install_cli.html)
 
-Note: The default composer config from this repository will install the latest stable 
-WordPress package, each time the application is staged. If you would like to avoid 
-unexpected upgrades, please change the following line in composer.json 
+Note: The default composer config from this repository will install the latest stable
+WordPress package, each time the application is staged. If you would like to avoid
+unexpected upgrades, please change the following line in composer.json
 in order to lock into a specific version or version range:
 
 ```
 "johnpbloch/wordpress"                        : "*",
 ```
 
-After each update to WordPress core, you may need to apply changes to the database. 
-WordPress should detect this and prompt you to run the database update from the 
+After each update to WordPress core, you may need to apply changes to the database.
+WordPress should detect this and prompt you to run the database update from the
 WordPress dashboard (https://<your-site>/wp-login.php).
 
 ---
@@ -84,24 +65,22 @@ to make your changes work.
 ## What plugins are installed by default?
 *   Disable Updates Manager: As Bluemix does not use a persistent file system, using the automatic update buttons in the WordPress UI would cause updates and plugins that you install to disappear after your app restarts. The Disable Updates Manager hides the update notifications for WordPress Core, plugins, and themes by default. You are welcome to change this setting, but keep in mind that all updates to your WordPress installation are handled by the composer package manager during the restaging your application.
 *   Object Storage: Handles all media uploads for your WordPress site.
-*   SendGrid: SendGrid provides email integration with your website.
-*   WP Super Cache: A popular WordPress optimization plugin that uses caching to speed up your blog.
+*   Postman SMTP: provides email integration with your website.
+*   WP-Optimizer: A popular WordPress optimization plugin that manages the database.
 
 Note: the SendGrid and WP Super Cache plugins must be manually enabled
 
 ## What is IBM Object Storage?
 IBM Object Storage is a service that exposes OpenStack Swift APIs for storing "objects" like files.
 
-IBM Object Storage is useful because WordPress traditionally relies on the local file 
-system for things like media uploads. Bluemix, like other cloud platform, recycles 
-the application container each time the application is staged. This action would 
-result in losing your media files every time that you push or restart your Bluemix app. 
-With IBM Object Storage, files are uploaded to the service so that they are never 
-lost. The SoftLayer Swift plugin within WordPress provides an admin settings page so that you can 
+IBM Object Storage is useful because WordPress traditionally relies on the local file
+system for things like media uploads. Bluemix, like other cloud platform, recycles
+the application container each time the application is staged. This action would
+result in losing your media files every time that you push or restart your Bluemix app.
+With IBM Object Storage, files are uploaded to the service so that they are never
+lost. The SoftLayer Swift plugin within WordPress provides an admin settings page so that you can
 manage your containers and your upload options.
 
-## What is SendGrid?
-SendGrid is an easy to use email service that that enables your WordPress website to send emails for things like forgotten passwords or comment notifications.
 
 ## Using Composer to manage your WordPress application.
 WordPress on Bluemix uses composer, a PHP dependency manager, to dynamically install your plugins and themes. You can manage all plugins, even the WordPress core version, via composer by modifying the composer.json file.
@@ -139,19 +118,19 @@ Private and premium Wordpress plugins can be challenging to incorporate in this 
    ```"mv lib/my-personal-plugin-folder htdocs/wp-content/plugins"```    
 
 ## My WordPress site received an "Error establishing a database connection" message.
-You probably have too many concurrent users who are trying to access your website. 
-By default, WordPress on Bluemix uses the free tier of ClearDB's MySQL database as 
-a service that is suitable for trial usage. However, for real usage, consider 
-upgrading to one of their paid tiers that provide you with more simultaneous 
+You probably have too many concurrent users who are trying to access your website.
+By default, WordPress on Bluemix uses the free tier of ClearDB's MySQL database as
+a service that is suitable for trial usage. However, for real usage, consider
+upgrading to one of their paid tiers that provide you with more simultaneous
 connections and more storage space.
 
-Unfortunately, paid tiers for ClearDB are not 
-offered in Bluemix currently. Contact ClearDB support for options on upgrading your 
+Unfortunately, paid tiers for ClearDB are not
+offered in Bluemix currently. Contact ClearDB support for options on upgrading your
 plan. You can also try [activating the WP Super Cache Plugin](#activate-the-wp-super-cache-plugin).
 
 ## My site is loading slowly. Can I speed it up?
-Bluemix provides built-in support for scaling your apps. If the slowdown is load-related, 
-increasing the number of instances may improve response times. You can also try [activating 
+Bluemix provides built-in support for scaling your apps. If the slowdown is load-related,
+increasing the number of instances may improve response times. You can also try [activating
 the WP Super Cache Plugin](#activate-the-wp-super-cache-plugin).
 
 ## I received an HTTP error when I tried to upload an image.
@@ -167,4 +146,3 @@ This value, along with several others, is defined in the .user.ini file in the r
 Newer versions of this repository use composer with loose version ranges in order to help keep this project up-to-date (at the cost of some stability). Simply restage your application to pick up the updated dependencies.
 
 If you have installed a previous version of the boilerplate that used Object Storage (v1), please see the following instructions for how to migrate your WordPress from Object Storage v1 to the new Object Storage service on Bluemix: http://blog.ibmjstart.net/2015/11/30/migrating-wordpress-on-bluemix
-
