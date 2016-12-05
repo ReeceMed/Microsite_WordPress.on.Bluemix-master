@@ -11,7 +11,7 @@ WordPress on Bluemix uses the [Composer package manager](https://getcomposer.org
 and configures the installation to use ClearDB (MySQL) for data and IBM Object Storage
 for media.
 
-[![Deploy to Bluemix](<a href="https://bluemix.net/deploy?repository=https://github.com/ReeceMed/Microsite_WordPress.on.Bluemix-master" # [required]><img src="https://bluemix.net/deploy/button.png" alt="Deploy to Bluemix"></a>)
+<a href="https://bluemix.net/deploy?repository=https://github.com/ReeceMed/Microsite_WordPress.on.Bluemix-master" # [required]><img src="https://bluemix.net/deploy/button.png" alt="Deploy to Bluemix"></a>
 
 Note: Only one instance of the Object Storage Free plan is allowed per organization. If your target org already has one, please either
   * Rename your Object Storage instance to "myObjectStorage" and deploy your application to the same space as this service instance; or
