@@ -1,0 +1,57 @@
+{
+    "repositories": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/ibmjstart/wp-bluemix-objectstorage.git"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/ibmjstart/wp-bluemix-config.git"
+        },
+        {
+          "type": "composer",
+          "url": "https://wpackagist.org"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/php-opencloud/openstack.git"
+        }
+    ],
+
+    "scripts": {
+        "pre-install-cmd" : [
+            "curl https://api.github.com/rate_limit"
+        ],
+        "post-install-cmd" : [
+            "mv vendor/ibmjstart/wp-bluemix-config/mu-plugins htdocs/wp-content/mu-plugins",
+            "mv vendor/ibmjstart/wp-bluemix-config/.user.ini htdocs",
+            "mv vendor/ibmjstart/wp-bluemix-config/wp-config.php htdocs",
+            "mv vendor htdocs/vendor",
+            "mv lib/.htaccess htdocs"
+        ]
+
+    },
+
+    "require": {
+        "ext-gd"                                      : "*",
+        "johnpbloch/wordpress"                        : "*",
+        "ibmjstart/wp-bluemix-objectstorage"          : "~2.1.1",
+        "ibmjstart/wp-bluemix-config"                 : "dev-master",
+        "wpackagist-plugin/stops-core-theme-and-plugin-updates": "*",
+        "wpackagist-plugin/postman-smtp": "*",
+        "wpackagist-plugin/wp-optimizer"            : "*",
+        "wpackagist-plugin/contact-form-7"            : "*",
+        "wpackagist-theme/twentyfourteen"             : "*",
+        "wpackagist-theme/twentyfifteen"             : "*",
+    },
+
+    "extra": {
+      "wordpress-install-dir": "htdocs",
+      "installer-paths": {
+        "htdocs/wp-content/plugins/{$name}/" : ["type:wordpress-plugin"],
+        "htdocs/wp-content/themes/{$name}/"  : ["type:wordpress-theme"]
+      }
+    },
+    "minimum-stability" : "dev",
+    "prefer-stable": true
+}

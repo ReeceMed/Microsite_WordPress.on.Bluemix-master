@@ -1,0 +1,85 @@
+<wpml-config>
+    <custom-fields>
+        <custom-field action="copy">audio_mp3</custom-field>
+        <custom-field action="copy">audio_ogg</custom-field>
+        <custom-field action="copy">audio_embed</custom-field>
+        <custom-field action="copy">video_mp4</custom-field>
+        <custom-field action="copy">video_ogv</custom-field>
+        <custom-field action="copy">video_webm</custom-field>
+        <custom-field action="copy">video_embed</custom-field>
+        <custom-field action="copy">video_poster</custom-field>
+        <custom-field action="copy">link_url</custom-field>
+        <custom-field action="copy">image_url</custom-field>
+        <custom-field action="copy">quote_author</custom-field>
+        <custom-field action="translate">image_description</custom-field>
+        <custom-field action="translate">status_author</custom-field>
+        <custom-field action="translate">quote_author</custom-field>
+        <custom-field action="translate">project_details</custom-field>
+        <custom-field action="copy">pcl</custom-field>
+        <custom-field action="copy">featured_media</custom-field>
+        <custom-field action="copy">blank</custom-field>
+        <custom-field action="copy">one_page</custom-field>
+        <custom-field action="copy">rev_slider</custom-field>
+        <custom-field action="copy">sidebar</custom-field>
+        <custom-field action="copy">sidebar_pos</custom-field>
+        <custom-field action="copy">feature-image-2</custom-field>
+        <custom-field action="copy">feature-image-3</custom-field>
+        <custom-field action="copy">feature-image-4</custom-field>
+        <custom-field action="copy">feature-image-5</custom-field>
+        <custom-field action="copy">project-feature-image-2</custom-field>
+        <custom-field action="copy">project-feature-image-3</custom-field>
+        <custom-field action="copy">project-feature-image-4</custom-field>
+        <custom-field action="copy">project-feature-image-5</custom-field>
+    </custom-fields>
+    <custom-types>
+        <custom-type translate="1">projects</custom-type>
+    </custom-types>
+    <taxonomies>
+        <taxonomy translate="1">projects-category</taxonomy>
+        <taxonomy translate="1">projects-tag</taxonomy>
+    </taxonomies>    
+    <admin-texts>
+        <key name="focuson_ninzio">
+            <key name="desk-slogan" />
+            <key name="footer-copyright" />
+            <key name="port-title" />
+            <key name="blog-title" />
+            <key name="shop-title" />
+        </key>
+    </admin-texts>    
+    <language-switcher-settings>
+        <key name="icl_lang_sel_config">
+            <key name="font-current-normal">#999999</key>
+            <key name="font-current-hover">#444444</key>
+            <key name="background-current-normal">#f1f1f1</key>
+            <key name="background-current-hover">#eeeeee</key>
+            <key name="font-other-normal">#999999</key>
+            <key name="font-other-hover">#444444</key>
+            <key name="background-other-normal">#f1f1f1</key>
+            <key name="background-other-hover">#eeeeee</key>
+            <key name="border">#e0e0e0</key>
+        </key>
+        <key name="icl_lang_sel_footer_config">
+            <key name="font-current-normal">#ffffff</key>
+            <key name="font-current-hover">#ffffff</key>
+            <key name="background-current-normal">#19262b</key>
+            <key name="background-current-hover">#19262b</key>
+            <key name="font-other-normal">#ffffff</key>
+            <key name="font-other-hover">#ffffff</key>
+            <key name="background-other-normal">#19262b</key>
+            <key name="background-other-hover">#19262b</key>
+            <key name="border">#19262b</key>
+        </key>    
+        <key name="icl_language_switcher_sidebar">0</key>  
+        <key name="icl_widget_title_show">0</key>
+        <key name="icl_lang_sel_type">dropdown</key>
+        <key name="icl_lso_link_empty">0</key>
+        <key name="icl_lso_flags">0</key>
+        <key name="icl_lso_native_lang">1</key>
+        <key name="icl_lso_display_lang">1</key>
+        <key name="icl_lang_sel_footer">0</key>
+        <key name="icl_post_availability">0</key>
+        <key name="icl_post_availability_position">below</key>
+        <key name="icl_post_availability_text">This post is also available in: %s</key>
+    </language-switcher-settings>    
+</wpml-config>

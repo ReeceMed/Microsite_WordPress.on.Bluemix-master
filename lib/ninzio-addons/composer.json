@@ -1,0 +1,10 @@
+{
+   "name": "ninzio-addons",
+   "type": "wordpress-plugin",
+   "keywords": ["wordpress", "plugin"],
+   "license": "This software is NOT to be distributed, but can be INCLUDED in WP themes: Premium or Contracted.",
+   "require": {
+     "php": ">=5.3.2",
+     "composer/installers": "v1.0.7"
+   }
+}
